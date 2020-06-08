@@ -38,8 +38,7 @@ def download(filename, outputfolder, username = '', password = ''):
                 auth_handler = request.HTTPBasicAuthHandler(passman)
                 opener = request.build_opener(auth_handler)
                 request.install_opener(opener)
-                response = request.urlopen(url.strip())
-                print(response)
+                request.urlopen(url.strip())
 
                 try:
                     urlretrieve(url.strip(), f.strip())
