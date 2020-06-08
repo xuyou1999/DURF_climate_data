@@ -1,10 +1,6 @@
 from urllib import request,parse
-from http.cookiejar import CookieJar
-import re
 from urllib.request import urlretrieve
-import requests
 import os
-import ssl
 
 def download(filename, outputfolder, username = '', password = ''):    
     categories = [filename]
@@ -18,20 +14,6 @@ def download(filename, outputfolder, username = '', password = ''):
             for i, url in enumerate(urls):
                 f = folder + '\\' + url.split('/')[-1]
                 url = url.strip()
-
-                '''#---------------------
-                dict = {"username":username,
-                        "password":password,
-                        #"redirect_uri": url,
-                        "commit": "log in"
-                        }
-                
-                data = bytes(parse.urlencode(dict),encoding="utf-8")
-                cookie = CookieJar() 
-                opener = request.build_opener(request.HTTPCookieProcessor(cookie))
-                response = opener.open(url,data)
-                '''#----------------------------
-
 
                 passman = request.HTTPPasswordMgrWithDefaultRealm()
                 passman.add_password(None, url.strip(), username, password)
