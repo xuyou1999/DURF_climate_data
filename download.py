@@ -20,8 +20,8 @@ def download(filename, outputfolder, username = '', password = ''):
                 url = url.strip()
 
                 '''#---------------------
-                dict = {"username":"you.xu@nyu.edu",
-                        "password":"NYUShanghai2018",
+                dict = {"username":username,
+                        "password":password,
                         #"redirect_uri": url,
                         "commit": "log in"
                         }
