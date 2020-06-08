@@ -6,7 +6,7 @@ import requests
 import os
 import ssl
 
-def download(filename, outputfolder):    
+def download(filename, outputfolder, username = '', password = ''):    
     categories = [filename]
     folder = os.getcwd() + '\\' + outputfolder
     for category in categories:
@@ -18,7 +18,8 @@ def download(filename, outputfolder):
             for i, url in enumerate(urls):
                 f = folder + '\\' + url.split('/')[-1]
                 url = url.strip()
-                '''
+
+                '''#---------------------
                 dict = {"username":"you.xu@nyu.edu",
                         "password":"NYUShanghai2018",
                         #"redirect_uri": url,
@@ -29,12 +30,11 @@ def download(filename, outputfolder):
                 cookie = CookieJar() 
                 opener = request.build_opener(request.HTTPCookieProcessor(cookie))
                 response = opener.open(url,data)
-                '''
-                #print(url)
-                #print(requests.get(url.strip(), auth=("you.xu@nyu.edu", "NYUShanghai2018")).content)
+                '''#----------------------------
+
 
                 passman = request.HTTPPasswordMgrWithDefaultRealm()
-                passman.add_password(None, url.strip(), "you.xu@nyu.edu", "NYUShanghai2018")
+                passman.add_password(None, url.strip(), username, password)
                 auth_handler = request.HTTPBasicAuthHandler(passman)
                 opener = request.build_opener(auth_handler)
                 request.install_opener(opener)
