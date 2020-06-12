@@ -43,7 +43,7 @@ def main():
     if input('include time? [y] or [n] ') == 'y':
         y_or_n = input('Year or Month? [y] or [m] ')
         time = input('Number? ')
-        deep = input('Deep? [y] or [n] ')
+        deep = 'n'
     else:
         time = ''
         deep = 'y'

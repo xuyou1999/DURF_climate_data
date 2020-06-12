@@ -54,8 +54,10 @@ class CD4File:
     #same as above, but output a dict
     def pile_avg_data_dict(self, vairable_list = ['Snowf_tavg', 'Rainf_tavg', 'AvgSurfT_inst', 'Wind_f_inst', 'Rainf_f_tavg', 'Tair_f_inst']):
         d = {'Month': self.month}
+        trans = self.transalate_keys()
         for i in vairable_list:
-            d[i] = self.average(self.get_data(i))
+            longname = trans[i]
+            d[longname] = self.average(self.get_data(i))
         return d
         
 def output_csv(name, data_dict_list):
