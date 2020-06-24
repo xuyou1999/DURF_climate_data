@@ -6,7 +6,8 @@ class CD4File:
         self._obj = nc.Dataset(filename)
         self.vairables = self._obj.variables
         self.keys = self.vairables.keys()
-        self.month = filename[-22:-16]
+        self.year = int(filename[-22:-18])
+        self.month = int(filename[-18:-16])
 
     def __str__(self):
         return self._obj
@@ -53,7 +54,7 @@ class CD4File:
     
     #same as above, but output a dict
     def pile_avg_data_dict(self, vairable_list = ['Snowf_tavg', 'Rainf_tavg', 'AvgSurfT_inst', 'Wind_f_inst', 'Rainf_f_tavg', 'Tair_f_inst']):
-        d = {'Month': self.month}
+        d = {'Year': self.year, 'Month': self.month}
         trans = self.transalate_keys()
         for i in vairable_list:
             longname = trans[i]
