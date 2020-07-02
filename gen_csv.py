@@ -63,6 +63,3 @@ def main():
     d_list = from_objlist_to_datadict_list(obj_list)
     master.output_csv(output_name, d_list)
 
-
-if __name__ == '__main__':
-    main()
