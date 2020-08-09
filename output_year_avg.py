@@ -7,9 +7,21 @@ class Year:
         self.year = year
         self.obj = [obj]
         self.data_dic = obj.pile_avg_data_dict()
+        self.max_names = ['Snow precipitation rate_max', 'Rain precipitation rate_max', 'Average Surface Skin temperature_max', 'Wind speed_max', 'Total precipitation rate_max', 'Temperature_max']
+        self.min_names = ['Snow precipitation rate_min', 'Rain precipitation rate_min', 'Average Surface Skin temperature_min', 'Wind speed_min', 'Total precipitation rate_min', 'Temperature_min']
+        lst = obj.pile_avg_data()
+        for i in range(len(lst)):
+            self.data_dic[self.max_names[i]] = lst[i]
+            self.data_dic[self.min_names[i]] = lst[i]
         self.n = 1
 
     def add_obj(self, new_obj):
+        lst = new_obj.pile_avg_data()
+        for i in range(len(lst)):
+            if lst[i] > self.data_dic[self.max_names[i]]:
+                self.data_dic[self.max_names[i]] = lst[i]
+            if lst[i] < self.data_dic[self.min_names[i]]:
+                self.data_dic[self.min_names[i]] = lst[i]
         add_data = new_obj.pile_avg_data_dict()
         for key in add_data.keys():
             if key in self.data_dic:
