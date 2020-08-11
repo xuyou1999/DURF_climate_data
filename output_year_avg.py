@@ -9,6 +9,8 @@ class Year:
         self.data_dic = obj.pile_avg_data_dict()
         self.max_names = ['Snow precipitation rate_max', 'Rain precipitation rate_max', 'Average Surface Skin temperature_max', 'Wind speed_max', 'Total precipitation rate_max', 'Temperature_max']
         self.min_names = ['Snow precipitation rate_min', 'Rain precipitation rate_min', 'Average Surface Skin temperature_min', 'Wind speed_min', 'Total precipitation rate_min', 'Temperature_min']
+        self.avg_678_names = ['Snow precipitation rate_678', 'Rain precipitation rate_678', 'Average Surface Skin temperature_678', 'Wind speed_678', 'Total precipitation rate_678', 'Temperature_678']
+        self.avg_678_data = [0, 0, 0, 0, 0, 0]
         lst = obj.pile_avg_data()
         for i in range(len(lst)):
             self.data_dic[self.max_names[i]] = lst[i]
@@ -17,6 +19,9 @@ class Year:
 
     def add_obj(self, new_obj):
         lst = new_obj.pile_avg_data()
+        if new_obj.month in [6, 7, 8]:
+            for i in range(len(lst)):
+                self.avg_678_data[i] += lst[i]
         for i in range(len(lst)):
             if lst[i] > self.data_dic[self.max_names[i]]:
                 self.data_dic[self.max_names[i]] = lst[i]
@@ -32,6 +37,10 @@ class Year:
         self.n += 1
     
     def pile_avg_data_dict(self):
+        for i in range(len(self.avg_678_data)):
+            self.avg_678_data[i] = self.avg_678_data[i] / 3
+        for j in range(6):
+            self.data_dic[self.avg_678_names[j]] = self.avg_678_data[j]
         return self.data_dic
         
 def main():
