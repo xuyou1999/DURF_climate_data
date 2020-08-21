@@ -1,4 +1,6 @@
 import webbrowser
+
+
 def auto_open(filename, start, end):
     f = open(filename, 'r')
     urls = f.readlines()
@@ -8,10 +10,12 @@ def auto_open(filename, start, end):
         webbrowser.open(url)
     f.close()
 
+
 def get_total_line(filename):
     f = open(filename, 'r')
     urls = f.readlines()
     return len(urls)
+
 
 if __name__ == "__main__":
     filename = input('filename? ')
